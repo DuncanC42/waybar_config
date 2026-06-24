@@ -1,0 +1,345 @@
+/*
+ * Thème CRÈME - Beige Élégant & Doré
+ * Synchronisé avec Hyprland
+ * -----------------------------------------------------
+ */
+
+/* =====================================================
+ * VARIABLES DE COULEURS - THÈME CRÈME
+ * ===================================================== */
+
+@define-color bg-primary rgba(20, 18, 15, 0.85);
+@define-color bg-secondary rgba(35, 30, 25, 0.9);
+@define-color bg-hover rgba(245, 222, 179, 0.15);
+
+@define-color accent-primary #f5deb3;
+@define-color accent-secondary #daa520;
+
+@define-color text-primary #f5f5dc;
+@define-color text-secondary #d4c4a8;
+@define-color text-muted #9e8b7d;
+
+@define-color border-color rgba(218, 165, 32, 0.5);
+@define-color border-active rgba(218, 165, 32, 0.8);
+
+@define-color warning #ffaa00;
+@define-color critical #ff6666;
+@define-color success #88cc88;
+
+/* =====================================================
+ * BASE
+ * ===================================================== */
+
+* {
+    font-family: "JetBrainsMono Nerd Font", "Fira Sans", "Font Awesome 6 Free", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+}
+
+/* =====================================================
+ * FENÊTRE PRINCIPALE
+ * ===================================================== */
+
+window#waybar {
+    background: transparent;
+    color: @text-primary;
+}
+
+#waybar {
+    background: @bg-primary;
+    border-radius: 18px;
+    border: 2px solid @border-color;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+/* =====================================================
+ * WORKSPACES
+ * ===================================================== */
+
+#workspaces {
+    margin: 8px 4px 8px 12px;
+    padding: 0 4px;
+    border-radius: 14px;
+    background: @bg-secondary;
+}
+
+#workspaces button {
+    margin: 4px 2px;
+    padding: 0 14px;
+    border-radius: 10px;
+    color: @text-secondary;
+    background: transparent;
+    transition: all 0.25s ease;
+}
+
+#workspaces button:hover {
+    background: @bg-hover;
+    color: @accent-secondary;
+    box-shadow: 0 0 12px rgba(218, 165, 32, 0.3);
+}
+
+#workspaces button.active {
+    background: linear-gradient(135deg, @accent-primary, @accent-secondary);
+    color: #2a2520;
+    font-weight: 700;
+    box-shadow: 0 0 16px rgba(218, 165, 32, 0.4);
+    min-width: 32px;
+}
+
+#workspaces button.urgent {
+    background: @critical;
+    color: @text-primary;
+}
+
+/* =====================================================
+ * FENÊTRE ACTIVE
+ * ===================================================== */
+
+#window {
+    margin: 8px 12px;
+    padding: 4px 16px;
+    border-radius: 14px;
+    background: @bg-secondary;
+    color: @text-primary;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+window#waybar.empty #window {
+    background: transparent;
+    padding: 0;
+    margin: 0;
+}
+
+/* =====================================================
+ * HORLOGE
+ * ===================================================== */
+
+#clock {
+    margin: 8px 12px;
+    padding: 4px 20px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, @accent-primary, @accent-secondary);
+    color: #2a2520;
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: 0 4px 16px rgba(218, 165, 32, 0.3);
+    transition: all 0.3s ease;
+}
+
+#clock:hover {
+    box-shadow: 0 6px 20px rgba(218, 165, 32, 0.5);
+}
+
+/* =====================================================
+ * MODULES SYSTÈME
+ * ===================================================== */
+
+#cpu,
+#memory,
+#disk,
+#temperature,
+#battery,
+#network,
+#pulseaudio,
+#bluetooth {
+    margin: 8px 4px;
+    padding: 4px 12px;
+    border-radius: 12px;
+    background: @bg-secondary;
+    color: @text-primary;
+    transition: all 0.25s ease;
+}
+
+#cpu:hover,
+#memory:hover,
+#disk:hover,
+#temperature:hover,
+#battery:hover,
+#network:hover,
+#pulseaudio:hover,
+#bluetooth:hover {
+    background: @bg-hover;
+    color: @accent-secondary;
+    box-shadow: 0 0 12px rgba(218, 165, 32, 0.2);
+}
+
+/* CPU */
+#cpu {
+    color: @accent-secondary;
+}
+
+/* Mémoire */
+#memory {
+    color: #d4af37;
+}
+
+/* Disque */
+#disk {
+    color: #c9a961;
+}
+
+/* Température */
+#temperature {
+    color: #e8b87e;
+}
+
+#temperature.critical {
+    color: @critical;
+}
+
+/* Batterie */
+#battery {
+    color: @success;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: @accent-secondary;
+    background: rgba(218, 165, 32, 0.1);
+}
+
+#battery.warning:not(.charging) {
+    color: @warning;
+    background: rgba(255, 170, 0, 0.1);
+}
+
+#battery.critical:not(.charging) {
+    color: @critical;
+    background: rgba(255, 102, 102, 0.2);
+}
+
+/* Réseau */
+#network {
+    color: #b8a884;
+}
+
+#network.disconnected {
+    color: @critical;
+    background: rgba(255, 102, 102, 0.1);
+}
+
+/* Audio */
+#pulseaudio {
+    color: @accent-secondary;
+}
+
+#pulseaudio.muted {
+    color: @critical;
+    background: rgba(255, 102, 102, 0.1);
+}
+
+/* Bluetooth */
+#bluetooth {
+    color: #c4a572;
+}
+
+#bluetooth.off {
+    background: transparent;
+    color: @text-muted;
+}
+
+/* =====================================================
+ * CONTRÔLES MÉDIA
+ * ===================================================== */
+
+#custom-playerprevious,
+#custom-playerpause,
+#custom-playernext {
+    margin: 8px 2px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    background: @bg-secondary;
+    color: @accent-secondary;
+    font-size: 18px;
+    transition: all 0.25s ease;
+}
+
+#custom-playerprevious:hover,
+#custom-playerpause:hover,
+#custom-playernext:hover {
+    background: @bg-hover;
+    color: @accent-primary;
+    box-shadow: 0 0 16px rgba(245, 222, 179, 0.3);
+}
+
+/* =====================================================
+ * IDLE INHIBITOR
+ * ===================================================== */
+
+#idle_inhibitor {
+    margin: 8px 4px;
+    padding: 4px 12px;
+    border-radius: 12px;
+    background: @bg-secondary;
+    color: @text-secondary;
+    font-size: 16px;
+    transition: all 0.25s ease;
+}
+
+#idle_inhibitor.activated {
+    color: @accent-secondary;
+    background: rgba(218, 165, 32, 0.15);
+}
+
+/* =====================================================
+ * TRAY
+ * ===================================================== */
+
+#tray {
+    margin: 8px 8px 8px 4px;
+    padding: 4px 8px;
+    border-radius: 12px;
+    background: @bg-secondary;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    color: @accent-secondary;
+}
+
+/* =====================================================
+ * MENU SORTIE
+ * ===================================================== */
+
+#custom-exit {
+    margin: 8px 12px 8px 4px;
+    padding: 4px 14px;
+    border-radius: 12px;
+    background: @bg-secondary;
+    color: @critical;
+    font-size: 18px;
+    transition: all 0.25s ease;
+}
+
+#custom-exit:hover {
+    background: rgba(255, 102, 102, 0.2);
+    color: @critical;
+    box-shadow: 0 0 16px rgba(255, 102, 102, 0.3);
+}
+
+/* =====================================================
+ * TOOLTIPS
+ * ===================================================== */
+
+tooltip {
+    background: @bg-primary;
+    border: 2px solid @border-active;
+    border-radius: 14px;
+    padding: 12px 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+tooltip label {
+    color: @text-primary;
+    font-size: 13px;
+}
