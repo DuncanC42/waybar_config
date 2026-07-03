@@ -202,7 +202,7 @@
         "format-disconnected": "󰖪 Déconnecté",
         "tooltip-format": "{ifname}: {ipaddr}/{cidr}\n {bandwidthDownBits}  {bandwidthUpBits}",
         "tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ifname}: {ipaddr}/{cidr}\n {bandwidthDownBits}  {bandwidthUpBits}",
-        "on-click": "nm-connection-editor"
+        "on-click": "kitty -e nmtui"
     },
 
     // ============================================
@@ -343,7 +343,7 @@
     // ============================================
     "custom/exit": {
         "format": "⏻",
-        "on-click": "wlogout",
+        "on-click": "wlogout -b 3",
         "tooltip-format": "Menu de sortie"
-    }
+    },
 }
